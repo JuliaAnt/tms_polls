@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from polls.views import index_view
-
+from polls.views import (
+    index_view,
+    contact_us_view,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_view),
+    path('contact-us', contact_us_view),
 ]
