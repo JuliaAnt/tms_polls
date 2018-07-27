@@ -46,3 +46,15 @@ def contact_us_view(request):
     }
 
     return render(request, 'contact_us.html', context=context)
+
+
+def questions(request):
+    from polls.models import Question
+    from datetime import datetime
+
+    q = Question(question_text='How do you feel today?', pub_date=datetime.utcnow())
+    q.save()
+
+    questions = Question.objects.all()
+
+    return render(request, 'questions.html', context={'questions': questions})

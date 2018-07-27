@@ -19,10 +19,12 @@ from django.urls import path
 from polls.views import (
     index_view,
     contact_us_view,
+    questions,
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index_view),
     path('contact-us', contact_us_view),
+    path('questions', questions)
 ]
