@@ -1,6 +1,9 @@
 import time
 import random
 
+from polls.models import Question, Choice
+from datetime import datetime
+
 from django.http.response import HttpResponse
 from django.shortcuts import render
 
@@ -49,12 +52,21 @@ def contact_us_view(request):
 
 
 def questions(request):
-    from polls.models import Question
-    from datetime import datetime
-
-    q = Question(question_text='How do you feel today?', pub_date=datetime.utcnow())
-    q.save()
+    if request.method == 'POST':
+        text = request.POST['text']
+        q = Question(question_text=text, pub_date=datetime.utcnow())
+        q.save()
 
     questions = Question.objects.all()
 
     return render(request, 'questions.html', context={'questions': questions})
+
+def question_detail(request, question_pk):
+
+    question = Question.objects.get(id=int(question_pk))
+
+    if request.method == 'POST':
+        text = request.POST['text']
+        Choice.objects.create(question=question, choice_text=text)
+
+    return render(request, 'question_detail.html', context={'question': question})
