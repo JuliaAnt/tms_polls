@@ -6,14 +6,16 @@ from datetime import datetime
 
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from django.conf import settings
 
 from polls.helpers import calculate_sum
 
 
 def index_view(request):
     user_agent = request.META['HTTP_USER_AGENT']
+    db = settings.DATABASES['default']['ENGINE']
 
-    return HttpResponse('Your user agent is: {}'.format(user_agent))
+    return HttpResponse('Your user agent is: {}, DB is: {}'.format(user_agent, db))
 
 
 def contact_us_view(request):
