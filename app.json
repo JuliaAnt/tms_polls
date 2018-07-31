@@ -1,0 +1,6 @@
+{
+  "name": "TMS Polls",
+  "description": "This app does one little thing, and does it well.",
+  "success_url": "/welcome",
+  "image": "heroku/python"
+}
