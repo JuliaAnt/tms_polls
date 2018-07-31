@@ -1,2 +1,2 @@
-release: python3 manage.py migrate
-web: gunicorn polls.wsgi
+release: echo "RUN XX" && python manage.py migrate
+web: gunicorn pplls.wsgi
